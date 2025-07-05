@@ -19,7 +19,7 @@ function App() {
     return (
         <Router>
             {<Header />}
-            <main className="container">
+            <main className="main-content-wrapper">
                 <Routes>
                     <Route path="/login" element={<LoginPage />} />
                     <Route path="/signup" element={<SignupPage />} />
