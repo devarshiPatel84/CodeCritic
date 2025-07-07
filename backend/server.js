@@ -6,6 +6,7 @@ const connectDB = require('./config/db');
 const { connect } = require('mongoose');
 const authRoutes = require('./routes/authRoutes');
 const reviewRoutes = require('./routes/reviewRoutes');
+const historyRoutes = require('./routes/historyRoutes');
 
 connectDB();
 const app = express();
@@ -19,6 +20,7 @@ app.get('/', (req, res) => {
 
 app.use('/api/auth', authRoutes);
 app.use('/api/review', reviewRoutes);
+app.use('/api/history', historyRoutes);
 
 app.use((err, req, res, next) => {
   console.error(err.stack);
