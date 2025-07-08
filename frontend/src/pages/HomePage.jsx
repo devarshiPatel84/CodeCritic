@@ -3,6 +3,7 @@ import { useState } from 'react';
 import axios from 'axios';
 import CodeEditor from '../components/CodeEditor';
 import ReviewDisplay from '../components/ReviewDisplay';
+import History from '../components/History';
 import '../styles/HomePage.css';
 
 const HomePage = () => {
@@ -11,6 +12,8 @@ const HomePage = () => {
     const [review, setReview] = useState('');
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState('');
+    const [refreshHistory, setRefreshHistory] = useState(0);
+    const [isSidebarOpen, setIsSidebarOpen] = useState(true);
 
     const submitCode = async () => {
         setLoading(true);
@@ -39,6 +42,15 @@ const HomePage = () => {
             );
 
             setReview(data.review);
+
+            await axios.post(
+                `${process.env.REACT_APP_BACKEND_URL}/api/history`,
+                { code, language, review: data.review },
+                config
+            );
+
+            setRefreshHistory(prev => prev + 1);
+
         } catch (err) {
             setError(err.response?.data?.message || err.message);
         } finally {
@@ -46,9 +58,26 @@ const HomePage = () => {
         }
     };
 
+    const handleSelectHistory = async (entry) => {
+        setCode(entry.code);
+        setLanguage(entry.language);
+        setReview(entry.review);
+        setLoading(false);
+        setError('');
+    };
+
+    const toggleSidebar = () => {
+        setIsSidebarOpen(prev => !prev);
+    };
+
     return (
         <div className="homepage-container">
-            <div className="main-content-area">
+            <History onSelect={handleSelectHistory} refreshHistory={refreshHistory} isSidebarOpen={isSidebarOpen} />
+            <div className={`main-content-area ${isSidebarOpen ? '' : 'main-content-expanded'}`}>
+                <button className="sidebar-toggle-button" onClick={toggleSidebar} title={isSidebarOpen ? 'Hide History' : 'Show History'}>
+                    {isSidebarOpen ? '<' : '>'}
+                </button>
+                
                 {/* Left Pane: Code Editor */}
                 <div className="left-pane">
                     <CodeEditor
