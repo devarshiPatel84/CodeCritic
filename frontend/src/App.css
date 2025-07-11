@@ -1,61 +1,40 @@
-/* html, body {
-  height: 100%;
-  margin: 0;
-  padding: 0;
-  background-color: #0a0a0a;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-               'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-               sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
-
-body {
-  overflow-y: auto;
-  overflow-x: hidden;
-} */
-
-/* ai-code-reviewer/frontend/src/styles/App.css */
-/* frontend/src/styles/App.css */
 html, body, #root {
-  height: 100%; /* Ensure html, body, and root div take full height */
+  height: 100%; 
   margin: 0;
   padding: 0;
-  overflow: hidden; /* Prevents body scrollbars, individual components should manage their own */
+  overflow: hidden;
 }
 
 body {
   font-family: 'Inter', sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  background-color: #0a0a0a; /* Dark background consistent with other pages */
-  color: #ffffff; /* Light text for contrast */
+  background-color: #0a0a0a; 
+  color: #ffffff; 
   line-height: 1.6;
 }
 
 #root {
   display: flex;
-  flex-direction: column; /* Allows header and main content to stack */
-  height: 100%; /* Ensures #root is also 100% height to facilitate flex */
+  flex-direction: column; 
+  height: 100%; 
 }
 
-/* This is the main content area below the header */
 .main-content-wrapper {
-  flex: 1; /* Make the main content fill available vertical space below the header */
-  padding-top: 60px; /* Adjusted to account for header height without its margin-bottom */
-  box-sizing: border-box; /* Include padding in element's total width and height */
-  display: flex; /* Allow content inside to be flexed */
-  flex-direction: column; /* Default to column for content within main */
-  width: 100%; /* Ensure it spans full width */
-  max-width: 1400px; /* Max width for the whole app content */
-  margin: 0 auto; /* Center the container */
-  padding-left: 2rem; /* Consistent padding with landing/login/signup */
-  padding-right: 2rem; /* Consistent padding with landing/login/signup */
-  overflow-y: auto; /* Allow the content wrapper to scroll if its content is too tall */
-  height: 100%; /* Ensure this takes 100% of the available flex space */
+  flex: 1; 
+  /* padding-top: 60px;  */
+  box-sizing: border-box; 
+  display: flex; 
+  flex-direction: column; 
+  width: 100%; 
+  max-width: 1400px; 
+  margin: 0 auto; 
+  padding-left: 2rem;
+  padding-right: 2rem; 
+  /* overflow-y: auto;  */
+  height: 100%; 
 }
 
-/* General Link Styling */
 /* a {
   color: #667eea; 
   text-decoration: none;
